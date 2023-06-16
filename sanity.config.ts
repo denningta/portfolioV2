@@ -17,6 +17,18 @@ import milestone from 'schemas/objects/milestone'
 import timeline from 'schemas/objects/timeline'
 import home from 'schemas/singletons/home'
 import settings from 'schemas/singletons/settings'
+import sankey from 'schemas/documents/sankey'
+import employment from 'schemas/documents/employment'
+import skill from 'schemas/documents/skill'
+import skillReference from 'schemas/documents/skill-reference'
+import { colorInput } from '@sanity/color-input'
+import post from 'schemas/documents/post'
+import { iconPicker } from 'sanity-plugin-icon-picker'
+import blockContent from 'schemas/documents/blockContent'
+import category from 'schemas/documents/category'
+import projectReference from 'schemas/documents/project-reference'
+import author from 'schemas/documents/author'
+import { codeInput } from '@sanity/code-input'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
@@ -43,6 +55,17 @@ export default defineConfig({
       duration,
       page,
       project,
+      sankey,
+      skill,
+      skillReference,
+      employment,
+      post,
+      author,
+      blockContent,
+      category,
+      projectReference,
+
+
       // Objects
       milestone,
       timeline,
@@ -67,5 +90,9 @@ export default defineConfig({
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
+    colorInput(),
+    iconPicker(),
+    codeInput()
+
   ],
 })

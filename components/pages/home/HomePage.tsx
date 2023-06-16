@@ -1,11 +1,18 @@
 import { ProjectListItem } from 'components/pages/home/ProjectListItem'
 import { Header } from 'components/shared/Header'
 import ScrollUp from 'components/shared/ScrollUp'
+import SankeyChart from 'components/shared/sankey-diagram/SankeyChart'
 import { resolveHref } from 'lib/sanity.links'
 import Link from 'next/link'
-import type { HomePagePayload } from 'types'
+import type { HomePagePayload, SankeyDataPayload } from 'types'
 
-export function HomePage({ data }: { data: HomePagePayload }) {
+export function HomePage({
+  data,
+  sankeyData
+}: {
+  data: HomePagePayload,
+  sankeyData: SankeyDataPayload | undefined
+}) {
   // Default to an empty object to allow previews on non-existent documents
   const { overview, showcaseProjects, title } = data
 
@@ -29,6 +36,8 @@ export function HomePage({ data }: { data: HomePagePayload }) {
           })}
         </div>
       )}
+
+      <SankeyChart data={sankeyData} width={800} height={1500} />
 
       {/* Workaround: scroll to top on route change */}
       <ScrollUp />

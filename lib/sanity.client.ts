@@ -6,6 +6,7 @@ import {
   homePageTitleQuery,
   pagesBySlugQuery,
   projectBySlugQuery,
+  sankeyDataQuery,
   settingsQuery,
 } from 'lib/sanity.queries'
 import { createClient } from 'next-sanity'
@@ -13,6 +14,7 @@ import type {
   HomePagePayload,
   PagePayload,
   ProjectPayload,
+  SankeyDataPayload,
   SettingsPayload,
 } from 'types'
 
@@ -67,4 +69,13 @@ export async function getSettings({
   token?: string | null
 }): Promise<SettingsPayload | undefined> {
   return await sanityClient(token)?.fetch(settingsQuery)
+}
+
+export async function getSankeyData({
+  token,
+}: {
+  token?: string | null
+}): Promise<SankeyDataPayload | undefined> {
+  return await sanityClient(token)?.fetch(sankeyDataQuery)
+
 }

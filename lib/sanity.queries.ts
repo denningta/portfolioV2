@@ -57,3 +57,47 @@ export const settingsQuery = groq`
     ogImage,
   }
 `
+
+export const sankeyDataQuery = groq`
+  {
+    "nodes": 
+      *[_type == "sankey"].employment[]-> 
+      + *[_type == "sankey"].projects[]-> 
+      + *[_type == "sankey"].skills[]->,
+    "linkdata": *[_type == "sankey"].employment[]-> {
+      "links": references[] {
+        "source": ^.slug.current,
+        "sourceColor": ^.color,
+        "target": project->slug.current,
+        "targetColor": project->color,
+        "value": ^.years * (percent / 100),
+      },
+      "sublinks": references[] {
+        "source": project->slug.current,
+        "sourceColor": project->color,
+        "skills": project->references[],
+        "value": ^.years * (percent / 100)
+      } | {
+        "links": skills[] {
+          "source": ^.source,
+          "sourceColor": ^.sourceColor,
+          "target": skill->slug.current,
+          "targetColor": skill->color,
+          "value": ^.value * (percent / 100)
+        }
+      }
+    },
+  } | {
+    "nodes": nodes[] | {
+      "name": title,
+      "id": slug.current,
+      "color": color,
+      start,
+      end,
+      shortDesc,
+      icon,
+      "href": post->slug.current
+    },
+    "links": linkdata[].links[] + linkdata[].sublinks[].links[],
+  }
+`

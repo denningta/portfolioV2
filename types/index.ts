@@ -1,4 +1,6 @@
 import type { PortableTextBlock } from '@portabletext/types'
+import { SankeyGraph } from 'd3-sankey'
+import { IconType } from 'react-icons'
 import type { Image } from 'sanity'
 
 export interface MenuItem {
@@ -63,3 +65,24 @@ export interface SettingsPayload {
   menuItems?: MenuItem[]
   ogImage?: Image
 }
+
+
+export interface SankeyNodeCustom {
+  name: string
+  id: string
+  color: { hex: string, alpha: number },
+  shortDesc: string
+  start: string
+  end: string
+  icon: keyof IconType
+  href: string
+}
+
+export interface SankeyLinkCustom {
+  sourceColor: { hex: string, alpha: number }
+  targetColor: { hex: string, alpha: number }
+  value: number
+}
+
+export type SankeyDataPayload = SankeyGraph<SankeyNodeCustom, SankeyLinkCustom>
+
