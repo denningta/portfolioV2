@@ -9,7 +9,7 @@ import { notFound } from 'next/navigation'
 export default async function IndexRoute() {
   const token = getPreviewToken()
   const data = (await getHomePage({ token })) || {
-    title: '',
+    title: 'Tim Denning',
     overview: [],
     showcaseProjects: [],
   }
