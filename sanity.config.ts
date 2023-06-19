@@ -29,6 +29,7 @@ import category from 'schemas/documents/category'
 import projectReference from 'schemas/documents/project-reference'
 import author from 'schemas/documents/author'
 import { codeInput } from '@sanity/code-input'
+import SankeyReferenceField from 'components/sanity/SankeyReferenceField'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
@@ -65,12 +66,24 @@ export default defineConfig({
       category,
       projectReference,
 
-
       // Objects
       milestone,
       timeline,
     ],
   },
+
+
+  form: {
+    components: {
+      field: (props) => {
+        if (props.name === 'references') {
+          return SankeyReferenceField(props)
+        }
+        return props.renderDefault(props)
+      }
+    }
+  },
+
   plugins: [
     deskTool({
       structure: pageStructure([home, settings]),

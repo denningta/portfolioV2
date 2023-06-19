@@ -19,6 +19,7 @@ export function Header(props: HeaderProps) {
   return (
     <div className={`${centered ? 'text-center' : 'w-5/6 lg:w-3/5'}`}>
 
+      {/* Image */}
       {image &&
         <div className='flex justify-center'>
           <Image
@@ -40,7 +41,7 @@ export function Header(props: HeaderProps) {
 
       {/* Description */}
       {description && (
-        <div className="mt-4 text-xl text-gray-600 md:text-2xl">
+        <div className="mt-4 text-xl text-gray-400 md:text-2xl">
           <CustomPortableText value={description} />
         </div>
       )}

@@ -115,6 +115,42 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'referenceList',
+      title: 'Reference List',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          name: 'posts',
+          to: [
+            { type: 'post' },
+          ]
+        },
+        {
+          type: 'reference',
+          name: 'projects',
+          to: [
+            { type: 'project' },
+          ]
+        },
+        {
+          type: 'reference',
+          name: 'skills',
+          to: [
+            { type: 'skill' },
+          ]
+        },
+        {
+          type: 'reference',
+          name: 'employment',
+          to: [
+            { type: 'employment' },
+          ]
+        },
+      ],
+      validation: ArrayRule => ArrayRule.unique()
+    })
   ],
   preview: {
     select: {
