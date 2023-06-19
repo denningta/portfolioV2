@@ -92,7 +92,12 @@ const SankeyChart = ({
       </div>
 
       <motion.div
-        className="relative select-none h-[600px]" ref={containerRef} onPointerMove={handlePointerMove}
+        className="relative select-none"
+        style={{
+          height: height
+        }}
+        ref={containerRef}
+        onPointerMove={handlePointerMove}
       >
         {isMobile && data && data.nodes.map((node, i) =>
           <motion.div

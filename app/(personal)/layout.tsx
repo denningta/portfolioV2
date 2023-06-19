@@ -19,7 +19,7 @@ export default async function IndexRoute({
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-black dark:bg-neutral-800 dark:text-white transition-all ease-in-out">
+    <div className="flex min-h-screen flex-col bg-white text-black dark:bg-neutral-900 dark:text-white transition-all ease-in-out">
       {token && <PreviewBanner />}
       <Navbar menuItems={settings.menuItems} />
       <div className="mt-20 flex-grow px-4 md:px-16 lg:px-32">{children}</div>
