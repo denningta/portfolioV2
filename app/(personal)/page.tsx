@@ -12,6 +12,7 @@ export default async function IndexRoute() {
     title: '',
     overview: [],
     showcaseProjects: [],
+    image: {}
   }
 
   const sankeyData = await getSankeyData({ token })

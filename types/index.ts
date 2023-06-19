@@ -36,6 +36,7 @@ export interface HomePagePayload {
   overview?: PortableTextBlock[]
   showcaseProjects?: ShowcaseProject[]
   title?: string
+  image: Image
 }
 
 export interface PagePayload {

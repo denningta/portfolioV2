@@ -41,7 +41,7 @@
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
     "react-responsive": "^9.0.2",
-    "sanity": "3.11.1",
+    "sanity": "^3.12.1",
     "sanity-plugin-asset-source-unsplash": "1.1.0",
     "sanity-plugin-icon-picker": "^3.2.0",
     "server-only": "0.0.1",

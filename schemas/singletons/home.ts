@@ -17,6 +17,15 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'image',
+      description: 'Main image on home page',
+      title: 'Main Image',
+      type: 'image',
+      options: {
+        hotspot: true
+      }
+    }),
+    defineField({
       name: 'overview',
       description:
         'Used both for the <meta> description tag for SEO, and the personal website subheader.',
