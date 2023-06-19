@@ -1,6 +1,7 @@
 import 'tailwindcss/tailwind.css'
 
 import { IBM_Plex_Mono, Inter, PT_Serif } from '@next/font/google'
+import { Providers } from './providers'
 
 const serif = PT_Serif({
   variable: '--font-serif',
@@ -29,8 +30,13 @@ export default async function RootLayout({
     <html
       lang="en"
       className={`${mono.variable} ${sans.variable} ${serif.variable}`}
+      suppressHydrationWarning={true}
     >
-      <body>{children}</body>
+      <body>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   )
 }

@@ -8,7 +8,6 @@ import useSankeyHover from "hooks/useSankeyHover"
 import { defaultStyles, TooltipWithBounds } from "@visx/tooltip"
 import { useContext } from "react"
 import NodeTooltip from "./NodeTooltip"
-import { DarkModeContext } from "../DarkModeContext"
 import { tailwindColors } from "lib/tailwind-config"
 import Heading from "components/global/Heading"
 import { ParentSize } from "@visx/responsive"
@@ -34,7 +33,7 @@ const SankeyChart = ({
     bottom: 0
   }
 }: SankeyChartProps) => {
-  const darkMode = useContext(DarkModeContext)
+  const darkMode = false // TODO: Dynamic darkMode
 
   const nodeStyle = {
     default: {

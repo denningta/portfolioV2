@@ -37,7 +37,7 @@ export function HomePage({
         </div>
       )}
 
-      <SankeyChart data={sankeyData} width={800} height={1500} />
+      <SankeyChart data={sankeyData} width={800} height={2000} />
 
       {/* Workaround: scroll to top on route change */}
       <ScrollUp />

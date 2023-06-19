@@ -36,8 +36,6 @@ const SankeyLinkComponent = ({
     return hex
   }
 
-  if (link.index === 0) console.log(link.sourceColor.hex, getColor(link.sourceColor.hex))
-
   return (
     <>
       <LinearGradient
