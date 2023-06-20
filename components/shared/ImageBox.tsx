@@ -19,7 +19,7 @@ export default function ImageBox({
   classesWrapper,
 }: ImageBoxProps) {
   const imageUrl =
-    image && urlForImage(image)?.height(height).width(width).fit('crop').url()
+    image && urlForImage(image)?.height(height).width(width).url()
 
   return (
     <div
@@ -27,7 +27,6 @@ export default function ImageBox({
     >
       {imageUrl && (
         <Image
-          className="absolute h-full w-full"
           alt={alt}
           width={width}
           height={height}

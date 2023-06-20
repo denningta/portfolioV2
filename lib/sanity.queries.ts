@@ -37,7 +37,13 @@ export const projectBySlugQuery = groq`
     _id,
     client, 
     coverImage,
-    description,
+    description[]{
+      ...,
+      _type == "image" => {
+        ...,
+        asset->
+      }
+    },
     duration, 
     overview,
     site, 

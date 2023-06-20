@@ -3,7 +3,7 @@
 import { BsSunFill, BsFillMoonFill } from "react-icons/bs"
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export interface DarkModeButtonProps {
 }
@@ -11,11 +11,14 @@ export interface DarkModeButtonProps {
 const DarkModeButton = ({
 }: DarkModeButtonProps) => {
   const { theme, setTheme } = useTheme()
-  const [darkMode, setDarkMode] = useState(theme === 'dark' ? true : false)
+  const [darkMode, setDarkMode] = useState(false)
+
+  useEffect(() => {
+    if (!theme) setDarkMode(false)
+    setDarkMode(theme === 'dark' ? true : false)
+  }, [theme])
 
   const handleDarkModeClick = () => {
-    setDarkMode(!darkMode)
-
     if (theme === 'dark') {
       setTheme('light')
     } else {

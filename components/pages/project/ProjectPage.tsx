@@ -85,14 +85,14 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
         {/* Description */}
         {description && (
           <CustomPortableText
-            paragraphClasses="font-serif max-w-3xl text-xl text-gray-600"
+            paragraphClasses="font-serif max-w-3xl text-xl text-gray-600 dark:text-neutral-100"
             value={description}
           />
         )}
         {/* Workaround: scroll to top on route change */}
         <ScrollUp />
       </div>
-      <div className="absolute left-0 w-screen border-t" />
+      <div className="absolute left-0 w-screen border-t dark:border-neutral-800" />
     </div>
   )
 }

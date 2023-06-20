@@ -3,6 +3,7 @@ import type { PortableTextBlock } from '@portabletext/types'
 import ImageBox from 'components/shared/ImageBox'
 import { TimelineSection } from 'components/shared/TimelineSection'
 import { Image } from 'sanity'
+import InlineImage from './InlineImage'
 
 export function CustomPortableText({
   paragraphClasses,
@@ -11,11 +12,30 @@ export function CustomPortableText({
   paragraphClasses?: string
   value: PortableTextBlock[]
 }) {
+
   const components: PortableTextComponents = {
     block: {
       normal: ({ children }) => {
-        return <p className={paragraphClasses}>{children}</p>
+        return <p className={`${paragraphClasses}`}>{children}</p>
       },
+      h1: ({ children }) => {
+        return <div className='text-3xl font-extrabold'>{children}</div>
+      },
+      h2: ({ children }) => {
+        return <div className='text-3xl font-extrabold'>{children}</div>
+      },
+      h3: ({ children }) => {
+        return <div className='text-3xl font-extrabold'>{children}</div>
+      },
+    },
+    list: {
+      bullet: ({ children }) => {
+        return <ul className={`${paragraphClasses} space-y-3 mt-3`}>{children}</ul>
+      }
+    },
+    listItem: {
+      bullet: ({ children }) => <li className='' style={{ listStyleType: 'disclosure-closed' }}>{children}</li>
+
     },
     marks: {
       link: ({ children, value }) => {
@@ -38,11 +58,7 @@ export function CustomPortableText({
       }) => {
         return (
           <div className="my-6 space-y-2">
-            <ImageBox
-              image={value}
-              alt={value.alt}
-              classesWrapper="relative aspect-[16/9]"
-            />
+            <InlineImage image={value} />
             {value?.caption && (
               <div className="font-sans text-sm text-gray-600">
                 {value.caption}

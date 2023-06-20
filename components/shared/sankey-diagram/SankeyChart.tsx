@@ -6,7 +6,6 @@ import SankeyLinkComponent from "./SankeyLink"
 import SankeyNodeComponent from "./SankeyNodeComponent"
 import useSankeyHover from "hooks/useSankeyHover"
 import { defaultStyles, TooltipWithBounds } from "@visx/tooltip"
-import { useContext } from "react"
 import NodeTooltip from "./NodeTooltip"
 import { tailwindColors } from "lib/tailwind-config"
 import Heading from "components/global/Heading"
@@ -14,6 +13,8 @@ import { ParentSize } from "@visx/responsive"
 import useCustomTooltip from "hooks/useCustomTooltip"
 import { useMediaQuery } from "react-responsive"
 import { motion } from "framer-motion"
+import { useTheme } from "next-themes"
+import { useState, useEffect } from "react"
 
 export interface SankeyChartProps {
   data: SankeyData | undefined
@@ -33,7 +34,13 @@ const SankeyChart = ({
     bottom: 0
   }
 }: SankeyChartProps) => {
-  const darkMode = false // TODO: Dynamic darkMode
+  const { theme } = useTheme()
+  const [darkMode, setDarkMode] = useState(false)
+
+  useEffect(() => {
+    if (!theme) setDarkMode(false)
+    setDarkMode(theme === 'dark' ? true : false)
+  }, [theme])
 
   const nodeStyle = {
     default: {

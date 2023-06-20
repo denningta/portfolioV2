@@ -24,7 +24,7 @@ export function Page({ data }: { data: PagePayload }) {
         {/* Workaround: scroll to top on route change */}
         <ScrollUp />
       </div>
-      <div className="absolute left-0 w-screen border-t" />
+      <div className="absolute left-0 w-screen border-t dark:border-t-neutral-800" />
     </div>
   )
 }

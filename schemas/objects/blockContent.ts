@@ -1,4 +1,5 @@
-import { defineType, defineArrayMember } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
+import { ImageIcon } from '@sanity/icons'
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -60,12 +61,41 @@ export default defineType({
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.
     defineArrayMember({
-      type: 'image',
-      options: { hotspot: true },
-    }),
-    defineArrayMember({
       type: 'code',
       name: 'inlineCode',
-    })
+    }),
+    defineArrayMember({
+      name: 'timeline',
+      type: 'timeline',
+    }),
+    defineField({
+      type: 'image',
+      icon: ImageIcon,
+      name: 'image',
+      title: 'Image',
+      options: {
+        hotspot: true,
+      },
+      preview: {
+        select: {
+          imageUrl: 'asset.url',
+          title: 'caption',
+        },
+      },
+      fields: [
+        defineField({
+          title: 'Caption',
+          name: 'caption',
+          type: 'string',
+        }),
+        defineField({
+          name: 'alt',
+          type: 'string',
+          title: 'Alt text',
+          description:
+            'Alternative text for screenreaders. Falls back on caption if not set',
+        }),
+      ],
+    }),
   ],
 })

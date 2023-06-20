@@ -17,7 +17,7 @@ export function Header(props: HeaderProps) {
   }
 
   return (
-    <div className={`${centered ? 'text-center' : 'w-5/6 lg:w-3/5'}`}>
+    <div className={`flex justify-center space-x-10 ${centered ? 'text-center' : 'w-4/5 lg:w-4/5'}`}>
 
       {/* Image */}
       {image &&
@@ -25,27 +25,29 @@ export function Header(props: HeaderProps) {
           <Image
             src={urlForImage(image)?.width(800).height(800).url() ?? ''}
             alt=''
-            width={400}
-            height={400}
+            width={300}
+            height={300}
             className='rounded-full mb-6 border-8 border-black dark:border-white transition ease-in-out'
           />
         </div>
       }
 
-      {/* Title */}
-      {title && (
-        <div className="text-3xl font-extrabold tracking-tight md:text-5xl">
-          {title}
-        </div>
-      )}
+      <div className='flex flex-col justify-center'>
+        {/* Title */}
+        {title && (
+          <div className="text-3xl font-extrabold tracking-tight md:text-5xl text-left">
+            {title}
+          </div>
+        )}
 
-      {/* Description */}
-      {description && (
-        <div className="mt-4 text-xl text-gray-400 md:text-2xl">
-          <CustomPortableText value={description} />
-        </div>
-      )}
+        {/* Description */}
+        {description && (
+          <div className="mt-4 text-xl text-gray-400 md:text-2xl text-left">
+            <CustomPortableText value={description} />
+          </div>
+        )}
 
+      </div>
     </div>
   )
 }
