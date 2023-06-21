@@ -21,7 +21,6 @@ export interface MilestoneItem {
 }
 
 export interface ShowcaseProject {
-  _type: string
   coverImage?: Image
   overview?: PortableTextBlock[]
   slug?: string
@@ -44,6 +43,16 @@ export interface PagePayload {
   name?: string
   overview?: PortableTextBlock[]
   title?: string
+  referenceList?: ProjectPayload[] & {
+    references?: {
+      title?: string
+      icon?: {
+        provider?: string
+        _type?: string
+        name?: string
+      }
+    }[]
+  }
 }
 
 export interface ProjectPayload {
@@ -56,9 +65,28 @@ export interface ProjectPayload {
   }
   overview?: PortableTextBlock[]
   site?: string
-  slug: string
+  slug: {
+    current: string
+  }
   tags?: string[]
   title?: string
+  color?: Color
+  references: {
+    skill: SkillPayload
+  }[]
+}
+
+export interface SkillPayload {
+  title?: string
+  slug?: string
+  icon?: {
+    svg?: string
+    _type?: string
+    name?: string
+    provider?: string
+  }
+  description?: string
+  color?: Color
 }
 
 export interface SettingsPayload {
@@ -80,10 +108,34 @@ export interface SankeyNodeCustom {
 }
 
 export interface SankeyLinkCustom {
-  sourceColor: { hex: string, alpha: number }
-  targetColor: { hex: string, alpha: number }
+  sourceColor: Color
+  targetColor: Color
   value: number
 }
 
 export type SankeyDataPayload = SankeyGraph<SankeyNodeCustom, SankeyLinkCustom>
 
+export interface Color {
+  alpha?: number
+  _type?: string
+  hex?: string
+  hsv?: {
+    a?: number
+    s?: number
+    v?: number
+    h?: number
+  }
+  rgb?: {
+    a?: number
+    r?: number
+    g?: number
+    b?: number
+  }
+  hsl?: {
+    a?: number
+    h?: number
+    s?: number
+    l?: number
+  }
+
+}

@@ -131,7 +131,7 @@ const SankeyChart = ({
           <TooltipWithBounds
             key={Math.random()}
             left={tooltipLeft}
-            top={tooltipTop + 40}
+            top={tooltipTop}
             style={{ ...defaultStyles, padding: 0, background: 'none', boxShadow: 'none' }}
           >
             <NodeTooltip node={activeNode} />

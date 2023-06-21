@@ -29,6 +29,12 @@ export const pagesBySlugQuery = groq`
     overview,
     slug,
     title,
+    referenceList[]->{
+      ...,
+      references[] {
+        skill->
+      }
+    },
   }
 `
 

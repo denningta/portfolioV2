@@ -24,7 +24,7 @@ export default defineType({
       title: 'Icon',
       type: 'iconPicker',
       options: {
-        outputFormat: 'react'
+        storeSvg: true
       }
     }),
     defineField({

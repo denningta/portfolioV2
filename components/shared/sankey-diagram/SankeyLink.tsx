@@ -40,8 +40,8 @@ const SankeyLinkComponent = ({
     <>
       <LinearGradient
         id={`${link.index}`}
-        from={link.sourceColor && getColor(link.sourceColor.hex)}
-        to={link.targetColor && getColor(link.targetColor.hex)}
+        from={link.sourceColor && getColor(link.sourceColor.hex ?? '')}
+        to={link.targetColor && getColor(link.targetColor.hex ?? '')}
         vertical={false}
         gradientUnits="userSpaceOnUse" // display gradient for path whose bounding box height === 0
         x2={link.target.x0} // required with userSpaceOnUse

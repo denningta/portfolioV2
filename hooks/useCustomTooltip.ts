@@ -23,7 +23,7 @@ const useCustomTooltip = ({ container }: UseCustomTooltipProps) => {
 
   const { containerRef, containerBounds } = useTooltipInPortal({
     scroll: true,
-    detectBounds: true,
+    detectBounds: false,
   });
 
   const handlePointerMove = useCallback(

@@ -27,7 +27,7 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
         {/* Header */}
         <Header title={title} description={overview} />
 
-        <div className="rounded-md border">
+        <div className="rounded-md border bg-white drop-shadow-lg dark:bg-neutral-800 dark:border-neutral-700">
           {/* Image  */}
           <ImageBox
             image={coverImage}
@@ -35,7 +35,17 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
             classesWrapper="relative aspect-[16/9]"
           />
 
-          <div className="divide-inherit grid grid-cols-1 divide-y lg:grid-cols-4 lg:divide-x lg:divide-y-0">
+          <div
+            className="
+              divide-inherit 
+              grid grid-cols-1 
+              lg:grid-cols-4
+              divide-y 
+              lg:divide-x lg:divide-y-0
+              dark:bg-neutral-800 dark:divide-neutral-700 
+              rounded-md
+            "
+          >
             {/* Duration */}
             {!!(startYear && endYear) && (
               <div className="p-3 lg:p-4">
