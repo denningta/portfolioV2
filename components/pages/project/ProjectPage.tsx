@@ -2,6 +2,7 @@ import { CustomPortableText } from 'components/shared/CustomPortableText'
 import { Header } from 'components/shared/Header'
 import ImageBox from 'components/shared/ImageBox'
 import ScrollUp from 'components/shared/ScrollUp'
+import Skill from 'components/shared/Skills'
 import Link from 'next/link'
 import type { ProjectPayload } from 'types'
 
@@ -16,10 +17,14 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
     site,
     tags,
     title,
+    references
   } = data || {}
 
   const startYear = new Date(duration?.start!).getFullYear()
   const endYear = duration?.end ? new Date(duration?.end).getFullYear() : 'Now'
+
+  console.log(data.references)
+
 
   return (
     <div>
@@ -38,8 +43,7 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
           <div
             className="
               divide-inherit 
-              grid grid-cols-1 
-              lg:grid-cols-4
+              flex flex-col md:flex-row
               divide-y 
               lg:divide-x lg:divide-y-0
               dark:bg-neutral-800 dark:divide-neutral-700 
@@ -80,13 +84,11 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
 
             {/* Tags */}
             <div className="p-3 lg:p-4">
-              <div className="text-xs md:text-sm">Tags</div>
-              <div className="text-md flex flex-row flex-wrap md:text-lg">
-                {tags?.map((tag, key) => (
-                  <div key={key} className="mr-1 break-words ">
-                    #{tag}
-                  </div>
-                ))}
+              <div className="text-xs md:text-sm">Skills</div>
+              <div className="text-md flex flex-row flex-wrap md:text-lg gap-2">
+                {references?.map((ref, key) => {
+                  return <Skill skill={ref.skill} key={key} />
+                })}
               </div>
             </div>
           </div>

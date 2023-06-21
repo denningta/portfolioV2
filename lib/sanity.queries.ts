@@ -56,6 +56,9 @@ export const projectBySlugQuery = groq`
     "slug": slug.current,
     tags,
     title,
+    references[] {
+      skill->
+    },
   }
 `
 
