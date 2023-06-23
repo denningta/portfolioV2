@@ -23,9 +23,6 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
   const startYear = new Date(duration?.start!).getFullYear()
   const endYear = duration?.end ? new Date(duration?.end).getFullYear() : 'Now'
 
-  console.log(data.references)
-
-
   return (
     <div>
       <div className="mb-20 space-y-6">

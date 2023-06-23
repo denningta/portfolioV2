@@ -116,6 +116,17 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'listFormat',
+      title: 'Reference List Format',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Grid', value: 'grid' },
+          { title: 'List', value: 'list' }
+        ]
+      }
+    }),
+    defineField({
       name: 'referenceList',
       title: 'Reference List',
       type: 'array',
@@ -150,7 +161,7 @@ export default defineType({
         },
       ],
       validation: ArrayRule => ArrayRule.unique()
-    })
+    }),
   ],
   preview: {
     select: {

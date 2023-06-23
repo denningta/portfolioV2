@@ -1,18 +1,17 @@
 import { CustomPortableText } from 'components/shared/CustomPortableText'
 import { Header } from 'components/shared/Header'
-import ImageBox from 'components/shared/ImageBox'
 import ScrollUp from 'components/shared/ScrollUp'
 import type { PagePayload } from 'types'
 import { ProjectListItem } from '../home/ProjectListItem'
+import { SkillListItem } from '../home/SkillListItem'
 
 export function Page({ data }: { data: PagePayload }) {
-  console.log(data)
   // Default to an empty object to allow previews on non-existent documents
-  const { body, overview, title, referenceList } = data || {}
+  const { body, overview, title, listFormat, referenceList } = data || {}
 
   return (
     <div>
-      <div className="mb-14">
+      <div className="mb-14 space-y-10">
         {/* Header */}
         <Header title={title} description={overview} />
 
@@ -26,9 +25,14 @@ export function Page({ data }: { data: PagePayload }) {
 
         {/* Reference List*/}
         {referenceList &&
-          <div className='space-y-10'>
-            {referenceList.map((reference, key) =>
-              <ProjectListItem key={key} project={reference} />
+          <div className={` ${listFormat === 'grid' ? 'grid grid-cols-2 gap-6' : 'flex flex-col space-y-10'}`}>
+            {referenceList.map((reference, key) => {
+              if (reference._type === 'project')
+                return <ProjectListItem key={key} project={reference} />
+
+              if (reference._type === 'skill')
+                return <SkillListItem key={key} skill={reference} />
+            }
             )}
           </div>
 

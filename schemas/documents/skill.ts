@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, defineArrayMember } from "sanity";
 import { preview } from "sanity-plugin-icon-picker"
 
 export default defineType({
@@ -8,16 +8,49 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Skill',
-      type: 'string'
+      description: 'This field is the title of your skill.',
+      title: 'Title',
+      type: 'string',
+      validation: (rule) => rule.required()
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title'
-      }
+        source: 'title',
+        maxLength: 96,
+        isUnique: (value, context) => context.defaultIsUnique(value, context),
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'overview',
+      description:
+        'Used both for the <meta> description tag for SEO, and project subheader.',
+      title: 'Overview',
+      type: 'array',
+      of: [
+        // Paragraphs
+        defineArrayMember({
+          lists: [],
+          marks: {
+            annotations: [],
+            decorators: [
+              {
+                title: 'Italic',
+                value: 'em',
+              },
+              {
+                title: 'Strong',
+                value: 'strong',
+              },
+            ],
+          },
+          styles: [],
+          type: 'block',
+        }),
+      ],
     }),
     defineField({
       name: 'icon',
@@ -28,9 +61,15 @@ export default defineType({
       }
     }),
     defineField({
-      name: 'shortDesc',
-      title: 'Short Description',
-      type: 'string'
+      name: 'coverImage',
+      title: 'Cover Image',
+      description:
+        'This image will be used as the cover image for the project. If you choose to add it to the show case projects, this is the image displayed in the list within the homepage.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'color',
@@ -38,15 +77,14 @@ export default defineType({
       type: 'color'
     }),
     defineField({
-      name: 'post',
-      title: 'Post',
-      type: 'reference',
-      to: [{ type: 'post' }]
+      name: 'years',
+      title: 'Years Experience',
+      type: 'number'
     }),
     defineField({
-      name: 'altIcon',
-      title: 'Alternate Icon',
-      type: 'image',
+      name: 'description',
+      title: 'Skill Description',
+      type: 'blockContent'
     }),
   ],
   preview: {

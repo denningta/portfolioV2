@@ -43,19 +43,12 @@ export interface PagePayload {
   name?: string
   overview?: PortableTextBlock[]
   title?: string
-  referenceList?: ProjectPayload[] & {
-    references?: {
-      title?: string
-      icon?: {
-        provider?: string
-        _type?: string
-        name?: string
-      }
-    }[]
-  }
+  listFormat?: 'grid' | 'list'
+  referenceList?: ProjectPayload[] | SkillPayload[]
 }
 
 export interface ProjectPayload {
+  _type?: string
   client?: string
   coverImage?: Image
   description?: PortableTextBlock[]
@@ -77,16 +70,23 @@ export interface ProjectPayload {
 }
 
 export interface SkillPayload {
+  _type?: string
   title?: string
-  slug?: string
+  slug?: {
+    current?: string
+  }
+  coverImage: Image
+  description?: PortableTextBlock[]
+  years?: number
+  overview?: PortableTextBlock[]
   icon?: {
     svg?: string
     _type?: string
     name?: string
     provider?: string
   }
-  description?: string
   color?: Color
+  projects?: ProjectPayload[]
 }
 
 export interface SettingsPayload {

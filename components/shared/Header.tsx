@@ -17,7 +17,7 @@ export function Header(props: HeaderProps) {
   }
 
   return (
-    <div className={`flex justify-center space-x-10 ${centered ? 'text-center' : 'w-4/5 lg:w-4/5'}`}>
+    <div className={`flex justify-start space-x-10 ${centered ? 'text-center' : 'w-4/5 lg:w-4/5'}`}>
 
       {/* Image */}
       {image &&

@@ -8,6 +8,7 @@ import {
   projectBySlugQuery,
   sankeyDataQuery,
   settingsQuery,
+  skillBySlugQuery,
 } from 'lib/sanity.queries'
 import { createClient } from 'next-sanity'
 import type {
@@ -16,6 +17,7 @@ import type {
   ProjectPayload,
   SankeyDataPayload,
   SettingsPayload,
+  SkillPayload,
 } from 'types'
 
 /**
@@ -61,6 +63,16 @@ export async function getProjectBySlug({
   token?: string | null
 }): Promise<ProjectPayload | undefined> {
   return await sanityClient(token)?.fetch(projectBySlugQuery, { slug })
+}
+
+export async function getSkillBySlug({
+  slug,
+  token,
+}: {
+  slug: string
+  token?: string | null
+}): Promise<SkillPayload | undefined> {
+  return await sanityClient(token)?.fetch(skillBySlugQuery, { slug })
 }
 
 export async function getSettings({

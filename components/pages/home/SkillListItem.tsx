@@ -3,18 +3,16 @@
 import type { PortableTextBlock } from '@portabletext/types'
 import { CustomPortableText } from 'components/shared/CustomPortableText'
 import ImageBox from 'components/shared/ImageBox'
-import Skill from 'components/shared/Skills'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import type { ProjectPayload } from 'types'
+import type { SkillPayload } from 'types'
 
-interface ProjectProps {
-  project: ProjectPayload
+interface SkillProps {
+  skill: SkillPayload
 }
 
-export function ProjectListItem(props: ProjectProps) {
-  const { project } = props
+export function SkillListItem(props: SkillProps) {
+  const { skill } = props
   const [hover, setHover] = useState(false)
 
   const handleMouseEnter = () => {
@@ -25,55 +23,50 @@ export function ProjectListItem(props: ProjectProps) {
     setHover(false)
   }
 
-
   return (
     <div
       className={`flex flex-col w-full border bg-white drop-shadow-lg dark:filter-none dark:border-neutral-700 rounded overflow-hidden gap-x-5 transition dark:bg-neutral-800`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link href={`/projects/${project.slug.current}`} className='p-2'>
+      <Link href={`/skills/${skill.slug?.current}`} className='p-2'>
         <div className={`relative w-full filter-none ${hover ? 'opacity-100' : 'opacity-60'} transition ease-in-out`}>
           <ImageBox
-            image={project.coverImage}
-            alt={`Cover image from ${project.title}`}
+            image={skill.coverImage}
+            alt={`Cover image from ${skill.title}`}
             classesWrapper="relative aspect-[16/9]"
           />
         </div>
         <div className="flex">
-          <TextBox project={project} />
+          <TextBox skill={skill} />
         </div>
       </Link>
     </div>
   )
 }
 
-function TextBox({ project }: { project: ProjectPayload }) {
-
+function TextBox({ skill }: { skill: SkillPayload }) {
   return (
     <div className="relative mt-2 flex w-full flex-col justify-between p-3">
       <div>
 
         {/* Title */}
         <div className="mb-1 text-xl font-extrabold tracking-tight md:text-2xl hover:text-blue-500">
-          {project.title}
+          {skill.title}
         </div>
+
+        {/* Years Experience */}
+        {skill.years &&
+          <div className='mb-2 text-sm text-gray-400'>
+            {skill.years} year{skill.years > 1 && 's'} experience
+          </div>
+        }
 
         {/* Overview  */}
         <div className="text-gray-500 dark:text-gray-200">
-          <CustomPortableText value={project.overview as PortableTextBlock[]} />
+          <CustomPortableText value={skill.overview as PortableTextBlock[]} />
         </div>
       </div>
-
-      <div className='mt-4 flex flex-wrap gap-x-2 gap-y-2'>
-        {project.references && project.references.map((ref, key) => {
-          return (
-            <Skill skill={ref.skill} key={key} />
-          )
-        }
-        )}
-      </div>
-
     </div>
   )
 }

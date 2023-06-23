@@ -29,6 +29,7 @@ export const pagesBySlugQuery = groq`
     overview,
     slug,
     title,
+    listFormat,
     referenceList[]->{
       ...,
       references[] {
@@ -59,6 +60,46 @@ export const projectBySlugQuery = groq`
     references[] {
       skill->
     },
+  }
+`
+
+export const skillBySlugQuery = groq`
+  *[_type == "skill" && slug.current == $slug][0] {
+    _id,
+    client, 
+    coverImage,
+    description[]{
+      ...,
+      _type == "image" => {
+        ...,
+        asset->
+      }
+    },
+    overview,
+    "slug": slug.current,
+    title,
+    years,
+    "projects": *[_type == "project" && references(^._id)] {
+      _id,
+      client, 
+      coverImage,
+      description[]{
+        ...,
+        _type == "image" => {
+          ...,
+          asset->
+        }
+      },
+      duration, 
+      overview,
+      site, 
+      slug,
+      tags,
+      title,
+      references[] {
+        skill->
+      },
+    }
   }
 `
 
