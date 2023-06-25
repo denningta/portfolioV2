@@ -1,6 +1,6 @@
 import { SankeyLinkCustom, SankeyNodeCustom } from "types"
 import { SankeyNode } from "d3-sankey"
-import { useMediaQuery } from "react-responsive"
+import useMediaQuery from "hooks/useMediaQuery"
 
 interface NodeTooltipProps {
   node: SankeyNode<SankeyNodeCustom, SankeyLinkCustom> | undefined
@@ -11,9 +11,8 @@ const formatDate = (input: string) => {
 }
 
 const NodeTooltip = ({ node }: NodeTooltipProps) => {
-  // const isMobile = useMediaQuery({ query: `(max-width: 760px)` })
+  const isMobile = useMediaQuery(`(max-width: 760px)`)
 
-  const isMobile = false
 
   return (
     <div

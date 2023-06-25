@@ -7,6 +7,7 @@ export interface MenuItem {
   _type: string
   slug?: string
   title?: string
+  url?: string
 }
 
 export interface MilestoneItem {

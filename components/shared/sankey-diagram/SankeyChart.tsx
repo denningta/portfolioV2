@@ -11,7 +11,7 @@ import { tailwindColors } from "lib/tailwind-config"
 import Heading from "components/global/Heading"
 import { ParentSize } from "@visx/responsive"
 import useCustomTooltip from "hooks/useCustomTooltip"
-import { useMediaQuery } from "react-responsive"
+import useMediaQuery from "hooks/useMediaQuery"
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
@@ -70,7 +70,8 @@ const SankeyChart = ({
     }
   }
 
-  const isMobile = useMediaQuery({ query: `(max-width: 760px)` })
+  const isMobile = useMediaQuery(`(max-width: 760px)`)
+
 
   const {
     handleNodeHoverChange,

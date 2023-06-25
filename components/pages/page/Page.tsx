@@ -32,6 +32,9 @@ export function Page({ data }: { data: PagePayload }) {
 
               if (reference._type === 'skill')
                 return <SkillListItem key={key} skill={reference} />
+
+              if (reference._type === 'employment')
+                return <div>employment</div>
             }
             )}
           </div>

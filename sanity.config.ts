@@ -30,6 +30,7 @@ import projectReference from 'schemas/documents/project-reference'
 import author from 'schemas/documents/author'
 import { codeInput } from '@sanity/code-input'
 import SankeyReferenceField from 'components/sanity/SankeyReferenceField'
+import externalLink from 'schemas/documents/external-link'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
@@ -65,6 +66,7 @@ export default defineConfig({
       blockContent,
       category,
       projectReference,
+      externalLink,
 
       // Objects
       milestone,
