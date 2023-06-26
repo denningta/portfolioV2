@@ -2,6 +2,7 @@ import 'server-only'
 
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
+  employmentBySlugQuery,
   homePageQuery,
   homePageTitleQuery,
   pagesBySlugQuery,
@@ -12,6 +13,7 @@ import {
 } from 'lib/sanity.queries'
 import { createClient } from 'next-sanity'
 import type {
+  EmploymentPayload,
   HomePagePayload,
   PagePayload,
   ProjectPayload,
@@ -73,6 +75,16 @@ export async function getSkillBySlug({
   token?: string | null
 }): Promise<SkillPayload | undefined> {
   return await sanityClient(token)?.fetch(skillBySlugQuery, { slug })
+}
+
+export async function getEmploymentBySlug({
+  slug,
+  token
+}: {
+  slug: string
+  token?: string | null
+}): Promise<EmploymentPayload | undefined> {
+  return await sanityClient(token)?.fetch(employmentBySlugQuery, { slug })
 }
 
 export async function getSettings({

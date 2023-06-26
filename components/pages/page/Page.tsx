@@ -4,6 +4,7 @@ import ScrollUp from 'components/shared/ScrollUp'
 import type { PagePayload } from 'types'
 import { ProjectListItem } from '../home/ProjectListItem'
 import { SkillListItem } from '../home/SkillListItem'
+import { EmploymentListItem } from '../home/EmploymentListItem'
 
 export function Page({ data }: { data: PagePayload }) {
   // Default to an empty object to allow previews on non-existent documents
@@ -34,7 +35,7 @@ export function Page({ data }: { data: PagePayload }) {
                 return <SkillListItem key={key} skill={reference} />
 
               if (reference._type === 'employment')
-                return <div>employment</div>
+                return <EmploymentListItem key={key} employment={reference} />
             }
             )}
           </div>

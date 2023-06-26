@@ -87,22 +87,30 @@ const SankeyNodeComponent = ({
     </Text>
   </>
 
+  if (!isMobile) {
 
-  if (!isMobile)
+    let route: string | undefined = undefined
+
+    if (node.href) {
+      if (node._type === 'project') route = `/projects/${node.id}`
+      if (node._type === 'skills') route = `/skills/${node.id}`
+      if (node._type === 'employment') route = `/employment/${node.id}`
+    }
+
     return (
       <>
         {nodeWidth > 0 && nodeHeight > 0 &&
           <Group top={node.y0} left={node.x0}>
             <Link
-              href={node.href ? `/writing/${node.href}` : ''}
-              className={node.href ? 'cursor-pointer' : 'cursor-auto'}
+              href={route ?? ''}
+              className={route ? 'cursor-pointer' : 'cursor-auto'}
             >
               {nodeBox}
             </Link>
 
             <Link
-              href={node.href ? `/writing/${node.href}` : ''}
-              className={node.href ? 'cursor-pointer' : 'cursor-default'}
+              href={route ?? ''}
+              className={route ? 'cursor-pointer' : 'cursor-default'}
             >
               {nodeText}
             </Link>
@@ -111,6 +119,7 @@ const SankeyNodeComponent = ({
         }
       </>
     )
+  }
 
   return (
     <>

@@ -90,6 +90,22 @@ export interface SkillPayload {
   projects?: ProjectPayload[]
 }
 
+export interface EmploymentPayload {
+  _type?: string
+  title?: string
+  slug?: {
+    current?: string
+  }
+  coverImage: Image
+  description?: PortableTextBlock[]
+  years?: number
+  overview?: PortableTextBlock[]
+  color?: Color
+  projects?: ProjectPayload[]
+  start?: string
+  end?: string
+}
+
 export interface SettingsPayload {
   footer?: PortableTextBlock[]
   menuItems?: MenuItem[]
@@ -98,6 +114,7 @@ export interface SettingsPayload {
 
 
 export interface SankeyNodeCustom {
+  _type: string
   name: string
   id: string
   color: { hex: string, alpha: number },

@@ -92,13 +92,41 @@ export const skillBySlugQuery = groq`
       },
       duration, 
       overview,
-      site, 
+      site,
       slug,
       tags,
       title,
       references[] {
         skill->
       },
+    }
+  }
+`
+
+export const employmentBySlugQuery = groq`
+  *[_type == 'employment' && slug.current == $slug][0] {
+    _type,
+    title,
+    slug,
+    coverImage,
+    description[]{
+      ...,
+      _type == "image" => {
+        ...,
+        asset->
+      }
+    },
+    years,
+    overview,
+    color,
+    start,
+    end,
+    years,
+    "projects": references[].project-> {
+      ...,
+      references[] {
+        skill->
+      }
     }
   }
 `
@@ -154,7 +182,8 @@ export const sankeyDataQuery = groq`
       end,
       shortDesc,
       icon,
-      "href": post->slug.current
+      "href": post->slug.current,
+      _type
     },
     "links": linkdata[].links[] + linkdata[].sublinks[].links[],
   }
