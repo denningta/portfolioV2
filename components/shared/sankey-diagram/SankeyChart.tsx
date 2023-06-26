@@ -110,7 +110,7 @@ const SankeyChart = ({
         {isMobile && data && data.nodes.map((node, i) =>
           <motion.div
             key={`tooltip-${i}`}
-            className="fixed bottom-5 right-5 m-0 text-black z-50 px-3 py-1 text-xs w-[300px] mt-[30px]"
+            className="fixed hidden bottom-5 right-5 m-0 text-black z-50 px-3 py-1 text-xs w-[300px] mt-[30px]"
             animate={activeNode && activeNode.id === node.id ? 'open' : 'closed'}
             variants={{
               open: {
@@ -119,7 +119,8 @@ const SankeyChart = ({
                 transition: { delay: 0.2 }
               },
               closed: {
-                y: 150,
+                display: 'hidden',
+                y: 200,
                 transition: { delay: 0.2 }
               }
             }}

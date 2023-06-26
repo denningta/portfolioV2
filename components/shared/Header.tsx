@@ -17,7 +17,7 @@ export function Header(props: HeaderProps) {
   }
 
   return (
-    <div className={`flex flex-col justify-start space-x-10 ${centered ? 'text-center' : 'w-4/5 lg:w-4/5'}`}>
+    <div className={`flex flex-col md:flex-row justify-start md:space-x-10 ${centered ? 'text-center' : 'w-4/5 lg:w-4/5'}`}>
 
       {/* Image */}
       {image &&
@@ -32,17 +32,17 @@ export function Header(props: HeaderProps) {
         </div>
       }
 
-      <div className='flex flex-col justify-center'>
+      <div className='flex flex-col justify-center items-center md:items-start'>
         {/* Title */}
         {title && (
-          <div className="text-3xl font-extrabold tracking-tight md:text-5xl text-left">
+          <div className="text-3xl font-extrabold tracking-tight md:text-5xl md:text-left ">
             {title}
           </div>
         )}
 
         {/* Description */}
         {description && (
-          <div className="mt-4 text-xl text-gray-400 md:text-2xl text-left">
+          <div className="mt-4 text-xl text-gray-400 md:text-2xl md:text-left">
             <CustomPortableText value={description} />
           </div>
         )}

@@ -7,7 +7,6 @@ import { MenuItem } from 'types'
 import MenuButton from './MenuButton'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import useMediaQuery from 'hooks/useMediaQuery'
 import NavMenu from './NavMenu'
 
 interface NavbarProps {
@@ -16,13 +15,10 @@ interface NavbarProps {
 
 export function Navbar({ menuItems }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const isMobile = useMediaQuery(`(max-width: 760px)`)
 
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
-
-  console.log(menuItems)
 
 
   return (
@@ -34,16 +30,18 @@ export function Navbar({ menuItems }: NavbarProps) {
         {menuItems &&
           menuItems.map((menuItem, key) => {
             const href = resolveHref(menuItem?._type, menuItem?.slug ?? menuItem?.url)
-            if (!href || (isMobile && menuItem._type !== 'home')) {
+            if (!href) {
               return null
             }
             return (
               <Link
                 key={key}
-                className={`text-lg hover:text-black dark:hover:text-blue-500 md:text-xl transition ease-in-out ${menuItem?._type === 'home'
-                  ? 'font-extrabold text-black dark:text-neutral-100'
-                  : 'text-gray-600 dark:text-neutral-100'
-                  }`}
+                className={`text-lg hover:text-black dark:hover:text-blue-500 md:text-xl transition ease-in-out 
+                  ${menuItem?._type === 'home'
+                    ? 'font-extrabold text-black dark:text-neutral-100'
+                    : 'text-gray-600 dark:text-neutral-100 hidden sm:block'
+                  }
+                `}
                 href={href}
               >
                 {menuItem.title}

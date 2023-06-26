@@ -1,6 +1,4 @@
 import { motion } from "framer-motion"
-import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
 
 export interface MenuButtonProps {
   toggle: () => void
@@ -8,28 +6,7 @@ export interface MenuButtonProps {
   height?: number
 }
 
-const Path = (props: React.ComponentProps<typeof motion.path>) => {
-  const { theme } = useTheme()
-  const [darkMode, setDarkMode] = useState(false)
-
-  useEffect(() => {
-    if (!theme) setDarkMode(false)
-    setDarkMode(theme === 'dark' ? true : false)
-  }, [theme])
-
-  return (
-    <motion.path
-      fill="transparent"
-      strokeWidth={3}
-      stroke={darkMode ? "white" : "black"}
-      strokeLinecap="round"
-      {...props}
-    />
-  )
-}
-
 const MenuButton = ({ toggle, width = 35, height = 35 }: MenuButtonProps) => {
-
 
   return (
     <>
@@ -59,6 +36,19 @@ const MenuButton = ({ toggle, width = 35, height = 35 }: MenuButtonProps) => {
     </>
   )
 
+}
+
+const Path = (props: React.ComponentProps<typeof motion.path>) => {
+
+  return (
+    <motion.path
+      fill="transparent"
+      className='stroke-black dark:stroke-white'
+      strokeWidth={3}
+      strokeLinecap="round"
+      {...props}
+    />
+  )
 }
 
 export default MenuButton
