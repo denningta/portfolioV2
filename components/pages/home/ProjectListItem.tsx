@@ -33,7 +33,7 @@ export function ProjectListItem(props: ProjectProps) {
       onMouseLeave={handleMouseLeave}
     >
       <Link href={`/projects/${project.slug.current}`} className='p-2'>
-        <div className={`relative w-full filter-none ${hover ? 'opacity-100' : 'opacity-60'} transition ease-in-out`}>
+        <div className={`relative w-full filter-none ${hover ? 'opacity-100' : 'sm:opacity-60 opacity-100'} transition ease-in-out`}>
           <ImageBox
             image={project.coverImage}
             alt={`Cover image from ${project.title}`}

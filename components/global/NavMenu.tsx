@@ -1,11 +1,10 @@
 import DarkModeButton from "components/shared/DarkModeButton"
 import { motion } from "framer-motion"
-import { resolveHref } from "lib/sanity.links"
-import Link from "next/link"
-import { MenuItem } from "types"
+import MenuItem from "./MenuItem"
+import type { MenuItem as MenuItemType } from "types"
 
 export interface NavMenuProps {
-  menuItems?: MenuItem[]
+  menuItems?: MenuItemType[]
   isOpen?: boolean
   onClose?: () => void
   darkModeButton?: JSX.Element
@@ -58,21 +57,10 @@ const NavMenu = ({ menuItems = [], onClose = () => { }, darkModeButton }: NavMen
         <div className="flex flex-col mt-10 space-y-10 items-center">
           {menuItems &&
             menuItems.map((menuItem, key) => {
-              const href = resolveHref(menuItem?._type, menuItem?.slug ?? menuItem?.url)
-              if (!href) {
-                return null
-              }
               return (
-                <Link
-                  key={key}
-                  className={`text-lg hover:text-black dark:hover:text-blue-500 md:text-xl transition ease-in-out ${menuItem?._type === 'home'
-                    ? 'font-extrabold text-black dark:text-neutral-100'
-                    : 'text-gray-600 dark:text-neutral-100'
-                    }`}
-                  href={href}
-                >
-                  {menuItem.title}
-                </Link>
+                <div onClick={onClose} key={key}>
+                  <MenuItem menuItem={menuItem} />
+                </div>
               )
             })}
 

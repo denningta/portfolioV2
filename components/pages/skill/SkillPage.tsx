@@ -23,7 +23,7 @@ export function SkillPage({ data }: { data: SkillPayload }) {
     <div>
       <div className="mb-20 space-y-6">
         {/* Header */}
-        <Header title={title} description={overview} />
+        <Header title={title} description={overview} centered />
 
         <div className="rounded-md overflow-hidden border bg-white drop-shadow-lg dark:bg-neutral-800 dark:border-neutral-700">
           {/* Image  */}
@@ -68,7 +68,7 @@ export function SkillPage({ data }: { data: SkillPayload }) {
           Projects using {title}
         </div>
 
-        <div className='grid grid-cols-2 gap-6'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
           {projects && projects.map((project, key) => {
             return <ProjectListItem project={project} key={key} />
           })

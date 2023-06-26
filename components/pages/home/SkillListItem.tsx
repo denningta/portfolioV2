@@ -30,7 +30,7 @@ export function SkillListItem(props: SkillProps) {
       onMouseLeave={handleMouseLeave}
     >
       <Link href={`/skills/${skill.slug?.current}`} className='p-2'>
-        <div className={`relative w-full filter-none ${hover ? 'opacity-100' : 'opacity-60'} transition ease-in-out`}>
+        <div className={`relative w-full filter-none ${hover ? 'opacity-100' : 'sm:opacity-60 opacity-100'} transition ease-in-out`}>
           <ImageBox
             image={skill.coverImage}
             alt={`Cover image from ${skill.title}`}

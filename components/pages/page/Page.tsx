@@ -13,7 +13,7 @@ export function Page({ data }: { data: PagePayload }) {
     <div>
       <div className="mb-14 space-y-10">
         {/* Header */}
-        <Header title={title} description={overview} />
+        <Header title={title} description={overview} centered />
 
         {/* Body */}
         {body && (
@@ -25,7 +25,7 @@ export function Page({ data }: { data: PagePayload }) {
 
         {/* Reference List*/}
         {referenceList &&
-          <div className={` ${listFormat === 'grid' ? 'grid grid-cols-2 gap-6' : 'flex flex-col space-y-10'}`}>
+          <div className={` ${listFormat === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 gap-6' : 'flex flex-col space-y-10'}`}>
             {referenceList.map((reference, key) => {
               if (reference._type === 'project')
                 return <ProjectListItem key={key} project={reference} />

@@ -1,16 +1,15 @@
 'use client'
 
 import DarkModeButton from 'components/shared/DarkModeButton'
-import { resolveHref } from 'lib/sanity.links'
-import Link from 'next/link'
-import { MenuItem } from 'types'
+import type { MenuItem as MenuItemType } from 'types'
 import MenuButton from './MenuButton'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import NavMenu from './NavMenu'
+import MenuItem from './MenuItem'
 
 interface NavbarProps {
-  menuItems?: MenuItem[]
+  menuItems?: MenuItemType[]
 }
 
 export function Navbar({ menuItems }: NavbarProps) {
@@ -18,6 +17,10 @@ export function Navbar({ menuItems }: NavbarProps) {
 
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
   }
 
 
@@ -29,23 +32,13 @@ export function Navbar({ menuItems }: NavbarProps) {
         {/* Menu Items */}
         {menuItems &&
           menuItems.map((menuItem, key) => {
-            const href = resolveHref(menuItem?._type, menuItem?.slug ?? menuItem?.url)
-            if (!href) {
-              return null
-            }
             return (
-              <Link
+              <div
                 key={key}
-                className={`text-lg hover:text-black dark:hover:text-blue-500 md:text-xl transition ease-in-out 
-                  ${menuItem?._type === 'home'
-                    ? 'font-extrabold text-black dark:text-neutral-100'
-                    : 'text-gray-600 dark:text-neutral-100 hidden sm:block'
-                  }
-                `}
-                href={href}
+                className={menuItem._type === 'home' ? 'block' : 'hidden sm:block'}
               >
-                {menuItem.title}
-              </Link>
+                <MenuItem menuItem={menuItem} />
+              </div>
             )
           })}
 
@@ -77,7 +70,7 @@ export function Navbar({ menuItems }: NavbarProps) {
         animate={isMenuOpen ? 'open' : 'closed'}
         className=''
       >
-        <NavMenu menuItems={menuItems} />
+        <NavMenu menuItems={menuItems} onClose={closeMenu} />
       </motion.div>
     </>
   )
