@@ -1,6 +1,7 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../../tailwind.config'
 import { KeyValuePair } from 'tailwindcss/types/config'
+
+const tailwindConfig = require('../tailwind.config')
 
 const fullConfig = resolveConfig(tailwindConfig)
 
