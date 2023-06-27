@@ -23,11 +23,10 @@ export function Navbar({ menuItems }: NavbarProps) {
     setIsMenuOpen(false)
   }
 
-
   return (
     <>
       <div
-        className="sticky top-0 z-10 flex flex-wrap items-center gap-x-5 bg-white/80 dark:bg-neutral-900/80 px-4 py-4 backdrop-blur md:px-16 md:py-5 lg:px-32 transition ease-in-out">
+        className="sticky top-0 z-10 flex flex-wrap items-center gap-x-5 bg-white dark:bg-neutral-900 px-4 py-4  md:px-16 md:py-5 lg:px-32 transition ease-in-out">
 
         {/* Menu Items */}
         {menuItems &&
