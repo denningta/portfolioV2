@@ -182,7 +182,7 @@ export const sankeyDataQuery = groq`
       end,
       shortDesc,
       icon,
-      "href": post->slug.current,
+      "href": slug.current, 
       _type
     },
     "links": linkdata[].links[] + linkdata[].sublinks[].links[],

@@ -5,6 +5,7 @@ import { SankeyNode } from "d3-sankey"
 import Link from "next/link"
 import { useRef } from "react"
 import { useMediaQuery } from "react-responsive"
+import getNodeRoute from "./get-node-route"
 
 export interface SankeyNodeComponentProps {
   node: SankeyNode<SankeyNodeCustom, SankeyLinkCustom>
@@ -88,14 +89,7 @@ const SankeyNodeComponent = ({
   </>
 
   if (!isMobile) {
-
-    let route: string | undefined = undefined
-
-    if (node.href) {
-      if (node._type === 'project') route = `/projects/${node.id}`
-      if (node._type === 'skills') route = `/skills/${node.id}`
-      if (node._type === 'employment') route = `/employment/${node.id}`
-    }
+    const route = getNodeRoute(node)
 
     return (
       <>

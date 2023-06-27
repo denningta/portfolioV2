@@ -46,6 +46,7 @@
     "react-inlinesvg": "^3.0.2",
     "react-is": "18.2.0",
     "react-responsive": "^9.0.2",
+    "react-syntax-highlighter": "^15.5.0",
     "sanity": "^3.12.1",
     "sanity-plugin-asset-source-unsplash": "1.1.0",
     "sanity-plugin-icon-picker": "^3.2.0",
@@ -56,6 +57,7 @@
   "devDependencies": {
     "@types/d3-sankey": "^0.12.1",
     "@types/react": "18.2.0",
+    "@types/react-syntax-highlighter": "^15.5.7",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.29.0",
     "eslint-config-next": "13.3.1",

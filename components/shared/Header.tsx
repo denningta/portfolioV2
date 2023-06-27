@@ -32,7 +32,7 @@ export function Header(props: HeaderProps) {
         </div>
       }
 
-      <div className='flex flex-col justify-center items-center md:items-start'>
+      <div className={`flex flex-col ${centered ? 'items-center' : 'items-start'}`}>
         {/* Title */}
         {title && (
           <div className="text-3xl font-extrabold tracking-tight md:text-5xl md:text-left ">

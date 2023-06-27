@@ -4,6 +4,7 @@ import ImageBox from 'components/shared/ImageBox'
 import { TimelineSection } from 'components/shared/TimelineSection'
 import { Image } from 'sanity'
 import InlineImage from './InlineImage'
+import InlineCode from './InlineCode'
 
 export function CustomPortableText({
   paragraphClasses,
@@ -71,6 +72,9 @@ export function CustomPortableText({
         const { items } = value || {}
         return <TimelineSection timelines={items} />
       },
+      inlineCode: ({ value }) => {
+        return <InlineCode value={value} />
+      }
     },
   }
 
