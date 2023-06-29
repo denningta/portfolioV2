@@ -21,6 +21,13 @@ const config = {
     /// Set this to false if you want production builds to abort if there's lint errors
     ignoreDuringBuilds: process.env.VERCEL_ENV === 'production',
   },
+  env: {
+    AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
+    RECAPTCHA_KEY: process.env.RECAPTCHA_KEY
+  },
+  experimental: {
+    serverActions: true
+  }
 }
 
 export default config

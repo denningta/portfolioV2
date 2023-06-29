@@ -1,5 +1,5 @@
 
-import { notFound } from 'next/navigation'
+import ContactPage from 'components/pages/contact/ContactPage'
 
 export default async function EmploymentSlugRoute({
   params,
@@ -7,10 +7,11 @@ export default async function EmploymentSlugRoute({
   params: { slug: string }
 }) {
 
+
   return (
     <>
       <div>
-        contact page
+        <ContactPage />
       </div>
     </>
   )
