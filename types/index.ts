@@ -8,6 +8,12 @@ export interface MenuItem {
   slug?: string
   title?: string
   url?: string
+  icon?: {
+    svg?: string
+    _type?: string
+    name?: string
+    provider?: string
+  }
 }
 
 export interface MilestoneItem {
@@ -34,6 +40,7 @@ export interface ShowcaseProject {
 export interface HomePagePayload {
   footer?: PortableTextBlock[]
   overview?: PortableTextBlock[]
+  bio?: PortableTextBlock[]
   showcaseProjects?: ShowcaseProject[]
   title?: string
   image: Image

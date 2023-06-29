@@ -1,16 +1,18 @@
 'use client'
 
 import { CircularProgress } from "@mui/material"
+import Link from "next/link"
 import { DetailedHTMLProps, ButtonHTMLAttributes, useRef } from "react"
 
 type CustomButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   children: React.ReactNode
   isLoading?: boolean
+  href?: string
 }
 export default function CustomButton(props: CustomButtonProps) {
-  const { children, isLoading, ...buttonProps } = props
+  const { children, isLoading, href, ...buttonProps } = props
 
-  return (
+  const button =
     <button
       {...buttonProps}
       className={`
@@ -30,6 +32,13 @@ export default function CustomButton(props: CustomButtonProps) {
         <CircularProgress color="inherit" size={20} />
       }
     </button>
+
+  if (href) return (
+    <Link href={href}>
+      {button}
+    </Link>
   )
+
+  return button
 
 }

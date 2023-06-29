@@ -9,6 +9,8 @@ export function resolveHref(
       return slug ? `/${slug}` : undefined
     case 'project':
       return slug ? `/projects/${slug}` : undefined
+    case 'employment':
+      return slug ? `/employment/${slug}` : undefined
     case 'externalLink':
       return slug ? slug : undefined
     default:

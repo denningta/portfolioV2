@@ -1,10 +1,8 @@
 'use client'
 
-import Button from "@mui/material/Button";
 import { TextareaAutosize } from "@mui/material";
 import { Header } from "components/shared/Header";
 import { FormikHelpers, useFormik } from "formik";
-import LoadingSpinner from "components/shared/LoadingSpinner";
 import CustomInput from "components/global/CustomInput";
 import { AirtableMessage } from "app/api/create-message/route";
 import { SnackbarProvider, enqueueSnackbar } from 'notistack'
@@ -52,7 +50,6 @@ export default function ContactPage({ }: ContactPageProps) {
     }
   })
 
-
   const handleFormSubmit = async (data: AirtableMessage, actions: FormikHelpers<AirtableMessage>) => {
     if (data.botDetector !== '') {
       enqueueSnackbar('Something went wrong', { variant: 'error' })
@@ -80,14 +77,7 @@ export default function ContactPage({ }: ContactPageProps) {
     <div className="space-y-10">
       <Header title={'Get in touch '} centered />
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
-        <input
-          id="botDetector"
-          name="botDetector"
-          onChange={handleChange}
-          value={values.botDetector}
-          hidden
-        />
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-1 md:space-y-0 md:grid md:grid-cols-2 gap-6">
 
         <div>
           <CustomInput
@@ -132,6 +122,14 @@ export default function ContactPage({ }: ContactPageProps) {
             {errors.message && touched.message && errors.message}
           </div>
         </div>
+
+        <input
+          id="botDetector"
+          name="botDetector"
+          onChange={handleChange}
+          value={values.botDetector}
+          hidden
+        />
 
         <div className="col-span-2">
           <CustomButton

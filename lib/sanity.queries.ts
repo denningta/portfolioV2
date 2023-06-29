@@ -1,5 +1,20 @@
 import { groq } from 'next-sanity'
 
+export const blockContentPipe = groq`
+    _type == "image" => {
+      ...,
+      asset->
+    },
+    markDefs[] {
+      ...,
+      _type == "internalLink" => {
+        "slug": @.reference->slug,
+        "refType": @.reference->_type
+      },
+    }
+
+`
+
 export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id, 
@@ -14,14 +29,17 @@ export const homePageQuery = groq`
       title, 
     }, 
     title, 
-    image
+    image,
+    bio[] {
+      ...,
+      ${blockContentPipe}
+    }
   }
 `
 
 export const homePageTitleQuery = groq`
   *[_type == "home"][0].title
 `
-
 export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     _id,
@@ -46,10 +64,7 @@ export const projectBySlugQuery = groq`
     coverImage,
     description[]{
       ...,
-      _type == "image" => {
-        ...,
-        asset->
-      }
+      ${blockContentPipe}
     },
     duration, 
     overview,
@@ -70,10 +85,7 @@ export const skillBySlugQuery = groq`
     coverImage,
     description[]{
       ...,
-      _type == "image" => {
-        ...,
-        asset->
-      }
+      ${blockContentPipe}
     },
     overview,
     "slug": slug.current,
@@ -85,10 +97,7 @@ export const skillBySlugQuery = groq`
       coverImage,
       description[]{
         ...,
-        _type == "image" => {
-          ...,
-          asset->
-        }
+        ${blockContentPipe}
       },
       duration, 
       overview,
@@ -111,10 +120,7 @@ export const employmentBySlugQuery = groq`
     coverImage,
     description[]{
       ...,
-      _type == "image" => {
-        ...,
-        asset->
-      }
+      ${blockContentPipe}
     },
     years,
     overview,
@@ -138,7 +144,8 @@ export const settingsQuery = groq`
       _type,
       "slug": slug.current,
       title,
-      url
+      url,
+      icon
     },
     ogImage,
   }
@@ -188,3 +195,4 @@ export const sankeyDataQuery = groq`
     "links": linkdata[].links[] + linkdata[].sublinks[].links[],
   }
 `
+

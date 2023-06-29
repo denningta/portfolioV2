@@ -54,6 +54,26 @@ export default defineType({
               },
             ],
           },
+          {
+            name: 'internalLink',
+            type: 'object',
+            title: 'Internal Link',
+            fields: [
+              {
+                name: 'reference',
+                title: 'Reference',
+                type: 'reference',
+                to: [
+                  { type: 'project' },
+                  { type: 'skill' },
+                  { type: 'employment' },
+                  { type: 'page' },
+                  { type: 'post' }
+                ]
+
+              }
+            ]
+          }
         ],
       },
     }),

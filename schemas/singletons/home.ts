@@ -68,6 +68,13 @@ export default defineType({
       validation: (rule) => rule.max(155).required(),
     }),
     defineField({
+      name: 'bio',
+      description:
+        'Used both for the <meta> description tag for SEO, and the personal website subheader.',
+      title: 'Bio',
+      type: 'blockContent',
+    }),
+    defineField({
       name: 'showcaseProjects',
       title: 'Showcase projects',
       description:

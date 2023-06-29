@@ -5,7 +5,6 @@ import { CustomPortableText } from 'components/shared/CustomPortableText'
 import ImageBox from 'components/shared/ImageBox'
 import Skill from 'components/shared/Skills'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import type { ProjectPayload } from 'types'
 

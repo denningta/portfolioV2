@@ -5,6 +5,8 @@ import { TimelineSection } from 'components/shared/TimelineSection'
 import { Image } from 'sanity'
 import InlineImage from './InlineImage'
 import InlineCode from './InlineCode'
+import { resolveHref } from 'lib/sanity.links'
+import Link from 'next/link'
 
 export function CustomPortableText({
   paragraphClasses,
@@ -50,6 +52,21 @@ export function CustomPortableText({
           </a>
         )
       },
+      internalLink: ({ children, value }) => {
+        const href = resolveHref(value.refType, value.slug.current)
+        if (href) {
+          return (
+            <Link
+              className="underline transition hover:opacity-50"
+              href={href}
+            >
+              {children}
+            </Link>
+          )
+        }
+        return <>{children}</>
+
+      }
     },
     types: {
       image: ({

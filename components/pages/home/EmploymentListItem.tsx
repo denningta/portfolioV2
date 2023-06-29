@@ -74,13 +74,6 @@ function TextBox({ employment }: { employment: EmploymentPayload }) {
           </div>
         }
 
-        {/* Years Experience */}
-        {employment.years &&
-          <div className='mb-2 text-sm text-gray-400'>
-            {employment.years} year{employment.years > 1 && 's'} experience
-          </div>
-        }
-
         {/* Overview  */}
         <div className="text-gray-500 dark:text-gray-200">
           <CustomPortableText value={employment.overview as PortableTextBlock[]} />
