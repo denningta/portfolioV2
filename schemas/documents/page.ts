@@ -162,6 +162,11 @@ export default defineType({
       ],
       validation: ArrayRule => ArrayRule.unique()
     }),
+    defineField({
+      name: 'pdf',
+      title: 'File',
+      type: 'file'
+    })
   ],
   preview: {
     select: {

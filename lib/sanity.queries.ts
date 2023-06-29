@@ -54,6 +54,9 @@ export const pagesBySlugQuery = groq`
         skill->
       }
     },
+    pdf {
+      asset->
+    }
   }
 `
 

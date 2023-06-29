@@ -1,7 +1,7 @@
 import type { PortableTextBlock } from '@portabletext/types'
 import { SankeyGraph } from 'd3-sankey'
 import { IconType } from 'react-icons'
-import type { Image } from 'sanity'
+import type { File, Image } from 'sanity'
 
 export interface MenuItem {
   _type: string
@@ -53,6 +53,11 @@ export interface PagePayload {
   title?: string
   listFormat?: 'grid' | 'list'
   referenceList?: ProjectPayload[] | SkillPayload[]
+  pdf?: {
+    asset?: {
+      url?: string
+    }
+  }
 }
 
 export interface ProjectPayload {

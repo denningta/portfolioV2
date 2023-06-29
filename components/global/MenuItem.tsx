@@ -15,16 +15,15 @@ export default function MenuItem({ menuItem }: MenuItemProps) {
 
   return (
     <Link
-      className={`text-lg hover:text-black dark:hover:text-blue-500 md:text-xl transition ease-in-out flex items-center
+      className={`hover:text-black dark:hover:text-blue-500 md:text-xl transition ease-in-out flex items-center
         ${menuItem?._type === 'home'
-          ? 'font-extrabold text-black dark:text-neutral-100'
-          : 'text-gray-600 dark:text-neutral-100'
+          ? 'text-lg md:text-xl font-extrabold text-black dark:text-neutral-100'
+          : 'text-sm md:text-lg text-gray-600 dark:text-neutral-100'
         }
                 `}
       href={href}
       target={menuItem?._type === 'externalLink' ? 'blank' : undefined}
     >
-      {menuItem.icon && <InlineSvg src={menuItem.icon?.svg || ''} fontSize={20} />}
       {menuItem.title}
     </Link>
   )

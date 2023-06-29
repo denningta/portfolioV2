@@ -8,7 +8,7 @@ import { EmploymentListItem } from '../home/EmploymentListItem'
 
 export function Page({ data }: { data: PagePayload }) {
   // Default to an empty object to allow previews on non-existent documents
-  const { body, overview, title, listFormat, referenceList } = data || {}
+  const { body, overview, title, listFormat, referenceList, pdf } = data || {}
 
   return (
     <div>
@@ -39,7 +39,13 @@ export function Page({ data }: { data: PagePayload }) {
             }
             )}
           </div>
+        }
 
+        {pdf?.asset &&
+          <iframe
+            src={pdf.asset.url}
+            className='w-full min-h-[1020px]'
+          />
         }
 
         {/* Workaround: scroll to top on route change */}
