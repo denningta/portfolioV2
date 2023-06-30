@@ -41,7 +41,7 @@ export function Navbar({ menuItems }: NavbarProps) {
             return (
               <div
                 key={key}
-                className={menuItem._type === 'home' ? 'block' : 'hidden lg:block'}
+                className={menuItem._type === 'home' ? 'block' : 'hidden md:block'}
               >
 
                 {menuItem._type === 'home'
@@ -53,12 +53,12 @@ export function Navbar({ menuItems }: NavbarProps) {
           })}
 
         {/* Dark Mode Button */}
-        <div className='hidden grow lg:flex justify-end'>
+        <div className='hidden grow md:flex justify-end'>
           <DarkModeButton />
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="static grow lg:hidden flex flex-wrap items-center justify-end mr-4">
+        <div className="static grow md:hidden flex flex-wrap items-center justify-end mr-4">
           <motion.nav
             initial={false}
             animate={isMenuOpen ? 'open' : 'closed'}

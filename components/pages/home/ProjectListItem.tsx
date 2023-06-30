@@ -64,6 +64,7 @@ function TextBox({ project }: { project: ProjectPayload }) {
         </div>
       </div>
 
+      {/* Skills */}
       <div className='mt-4 flex flex-wrap gap-x-2 gap-y-2'>
         {project.references && project.references.map((ref, key) => {
           return (

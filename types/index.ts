@@ -71,6 +71,7 @@ export interface ProjectPayload {
   }
   overview?: PortableTextBlock[]
   site?: string
+  repository?: string
   slug: {
     current: string
   }

@@ -83,6 +83,11 @@ export default defineType({
       type: 'url',
     }),
     defineField({
+      name: 'repository',
+      title: 'Repository',
+      type: 'url'
+    }),
+    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
@@ -91,7 +96,6 @@ export default defineType({
         layout: 'tags',
       },
     }),
-
     defineField({
       name: 'catetory',
       title: 'Category',

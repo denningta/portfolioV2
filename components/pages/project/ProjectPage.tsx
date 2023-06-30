@@ -6,6 +6,10 @@ import Skill from 'components/shared/Skills'
 import Link from 'next/link'
 import type { ProjectPayload } from 'types'
 
+function removeHttps(url: string) {
+  return url.replace(/^\/\/|^.*?:(\/\/)?/, '')
+}
+
 export function ProjectPage({ data }: { data: ProjectPayload }) {
   // Default to an empty object to allow previews on non-existent documents
   const {
@@ -15,7 +19,7 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
     duration,
     overview,
     site,
-    tags,
+    repository,
     title,
     references
   } = data || {}
@@ -25,11 +29,11 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
 
   return (
     <div>
-      <div className="mb-20 space-y-6">
+      <div className="mb-20">
         {/* Header */}
         <Header title={title} description={overview} />
 
-        <div className="rounded-md border bg-white drop-shadow-lg dark:bg-neutral-800 dark:border-neutral-700">
+        <div className="my-12 rounded-md border bg-white drop-shadow-lg dark:bg-neutral-800 dark:border-neutral-700">
           {/* Image  */}
           <ImageBox
             image={coverImage}
@@ -40,9 +44,8 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
           <div
             className="
               divide-inherit 
-              flex flex-col md:flex-row
-              divide-y 
-              lg:divide-x lg:divide-y-0
+              flex flex-col
+              divide-y
               dark:bg-neutral-800 dark:divide-neutral-700 
               rounded-md
             "
@@ -73,14 +76,30 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
                     className="text-md break-words md:text-lg"
                     href={site}
                   >
-                    {site}
+                    {removeHttps(site)}
                   </Link>
                 )}
               </div>
             )}
 
+            {/* Repository */}
+            {repository &&
+              <div className="p-3 lg:p-4">
+                <div className="text-xs md:text-sm">Repository</div>
+                {repository && (
+                  <Link
+                    target="_blank"
+                    className="text-md break-words md:text-lg"
+                    href={repository}
+                  >
+                    {removeHttps(repository)}
+                  </Link>
+                )}
+              </div>
+            }
+
             {/* Tags */}
-            <div className="p-3 lg:p-4">
+            <div className="grow p-3 lg:p-4">
               <div className="text-xs md:text-sm">Skills</div>
               <div className="text-md flex flex-row flex-wrap md:text-lg gap-2">
                 {references?.map((ref, key) => {
@@ -94,7 +113,7 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
         {/* Description */}
         {description && (
           <CustomPortableText
-            paragraphClasses="font-serif max-w-3xl text-xl text-gray-600 dark:text-neutral-100"
+            paragraphClasses="text-xl text-gray-900 dark:text-neutral-100 tracking-normal leading-loose"
             value={description}
           />
         )}

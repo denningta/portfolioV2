@@ -57,7 +57,7 @@ export function SkillPage({ data }: { data: SkillPayload }) {
         {/* Description */}
         {description && (
           <CustomPortableText
-            paragraphClasses="font-serif max-w-3xl text-xl text-gray-600 dark:text-neutral-100"
+            paragraphClasses="text-xl text-gray-900 dark:text-neutral-100 tracking-normal leading-loose"
             value={description}
           />
         )}

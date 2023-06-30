@@ -72,6 +72,7 @@ export const projectBySlugQuery = groq`
     duration, 
     overview,
     site, 
+    repository,
     "slug": slug.current,
     tags,
     title,
