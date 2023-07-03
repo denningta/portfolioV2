@@ -23,11 +23,11 @@ export function EmploymentPage({ data }: { data: EmploymentPayload }) {
 
   return (
     <div>
-      <div className="mb-20 space-y-6">
+      <div className="mb-20">
         {/* Header */}
         <Header title={title} description={overview} centered />
 
-        <div className="rounded-md overflow-hidden border bg-white drop-shadow-lg dark:bg-neutral-800 dark:border-neutral-700">
+        <div className="my-12 rounded-md overflow-hidden border bg-white drop-shadow-lg dark:bg-neutral-800 dark:border-neutral-700">
           {/* Image  */}
           <ImageBox
             image={coverImage}
@@ -77,26 +77,27 @@ export function EmploymentPage({ data }: { data: EmploymentPayload }) {
         {/* Description */}
         {description && (
           <CustomPortableText
-            paragraphClasses="font-serif max-w-3xl text-xl text-gray-600 dark:text-neutral-100"
+            paragraphClasses="text-xl text-gray-900 dark:text-neutral-100 tracking-normal leading-loose"
             value={description}
           />
         )}
 
 
         {/* Project List*/}
-        <div className='text-3xl font-bold'>
-          Projects
+        <div className='my-12'>
+          <div className='mb-6 text-3xl font-bold'>
+            Projects
+          </div>
+
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
+            {projects && projects.map((project, key) => {
+              return <ProjectListItem project={project} key={key} />
+            })
+
+
+            }
+          </div>
         </div>
-
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
-          {projects && projects.map((project, key) => {
-            return <ProjectListItem project={project} key={key} />
-          })
-
-
-          }
-        </div>
-
 
 
         {/* Workaround: scroll to top on route change */}

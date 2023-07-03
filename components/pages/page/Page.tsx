@@ -5,10 +5,13 @@ import type { PagePayload } from 'types'
 import { ProjectListItem } from '../home/ProjectListItem'
 import { SkillListItem } from '../home/SkillListItem'
 import { EmploymentListItem } from '../home/EmploymentListItem'
+import Pdf from 'components/shared/Pdf'
 
 export function Page({ data }: { data: PagePayload }) {
   // Default to an empty object to allow previews on non-existent documents
   const { body, overview, title, listFormat, referenceList, pdf } = data || {}
+
+
 
   return (
     <div>
@@ -42,10 +45,7 @@ export function Page({ data }: { data: PagePayload }) {
         }
 
         {pdf?.asset &&
-          <iframe
-            src={pdf.asset.url}
-            className='w-full min-h-[1020px]'
-          />
+          <Pdf pdf={pdf} />
         }
 
         {/* Workaround: scroll to top on route change */}

@@ -25,8 +25,12 @@ const config = {
     AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
     RECAPTCHA_KEY: process.env.RECAPTCHA_KEY
   },
-  experimental: {
-    serverActions: true
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.node/,
+      use: 'raw-loader',
+    })
+    return config
   }
 }
 
